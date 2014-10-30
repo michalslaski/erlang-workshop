@@ -30,7 +30,7 @@
 %%%=============================================================================
 init(Port) when is_integer(Port) ->
     %% open TCP listening socket on a given port
-    {ok, ListenSocket} = gen_tcp:listen(Port, []),
+    {ok, ListenSocket} = gen_tcp:listen(Port, [{reuseaddr, true}]),
 
     %% let the inet driver accept new clients
     {ok,_Ref} = prim_inet:async_accept(ListenSocket, -1),
