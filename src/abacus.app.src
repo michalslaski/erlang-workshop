@@ -1,0 +1,14 @@
+{application, abacus,
+ [
+  {description, "An Erlang abacus library"},
+  {vsn, "1"},
+  {modules, [
+             abacus
+            ]},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {env, []}
+ ]}.
