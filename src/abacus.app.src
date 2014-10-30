@@ -1,10 +1,8 @@
 {application, abacus,
  [
-  {description, "An Erlang abacus library"},
-  {vsn, "1"},
-  {modules, [
-             abacus
-            ]},
+  {description, "An Erlang abacus"},
+  {vsn, "1.0"},
+  {modules, []},
   {registered, []},
   {applications, [
                   kernel,
