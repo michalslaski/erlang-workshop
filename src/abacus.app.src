@@ -8,5 +8,6 @@
                   kernel,
                   stdlib
                  ]},
+  {mod, {abacus_app, []}},
   {env, []}
  ]}.
