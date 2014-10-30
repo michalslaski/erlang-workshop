@@ -32,38 +32,38 @@ start(Port) ->
 %%%=============================================================================
 loop(Socket, CurrentValue) ->
     receive
-	{tcp, Socket, [$+ | String]} ->
-	    Integer = parse_integer(String),
-	    loop(Socket, abacus:addition(CurrentValue, Integer));
+        {tcp, Socket, [$+ | String]} ->
+            Integer = parse_integer(String),
+            loop(Socket, abacus:addition(CurrentValue, Integer));
 
-	{tcp, Socket, [$- | String]} ->
-	    Integer = parse_integer(String),
-	    loop(Socket, abacus:subtraction(CurrentValue, Integer));
+        {tcp, Socket, [$- | String]} ->
+            Integer = parse_integer(String),
+            loop(Socket, abacus:subtraction(CurrentValue, Integer));
 
-	{tcp, Socket, [$* | String]} ->
-	    Integer = parse_integer(String),
-	    loop(Socket, abacus:multiplication(CurrentValue, Integer));
+        {tcp, Socket, [$* | String]} ->
+            Integer = parse_integer(String),
+            loop(Socket, abacus:multiplication(CurrentValue, Integer));
 
-	{tcp, Socket, [$/ | String]} ->
-	    Integer = parse_integer(String),
-	    loop(Socket, abacus:division(CurrentValue, Integer));
+        {tcp, Socket, [$/ | String]} ->
+            Integer = parse_integer(String),
+            loop(Socket, abacus:division(CurrentValue, Integer));
 
-	{tcp, Socket, [$= | _]} ->
-	    gen_tcp:send(Socket, io_lib:format("~p~n", [CurrentValue])),
-	    loop(Socket, CurrentValue);
+        {tcp, Socket, [$= | _]} ->
+            gen_tcp:send(Socket, io_lib:format("~p~n", [CurrentValue])),
+            loop(Socket, CurrentValue);
 
-	{tcp_closed, _} ->
-	    ok;
+        {tcp_closed, _} ->
+            ok;
 
-	_Other -> % ignoring commands, which can't be understood
-	    io:format("ignoring ~p~n", [_Other]),
-	    loop(Socket, CurrentValue)
+        _Other -> % ignoring commands, which can't be understood
+            io:format("ignoring ~p~n", [_Other]),
+            loop(Socket, CurrentValue)
     end.
 
 parse_integer(String) ->
     case string:to_integer(String) of
-	{error, no_integer} ->
-	    exit({error, no_integer});
-	{Integer, _} ->
-	    Integer
+        {error, no_integer} ->
+            exit({error, no_integer});
+        {Integer, _} ->
+            Integer
     end.
