@@ -38,7 +38,6 @@ $ mkdir test
 Edit test/abacus_tests.erl starting with
 
 ```
--include_lib("eunit/include/eunit.hrl").`
 -module(abacus_tests).
 -include_lib("eunit/include/eunit.hrl").
 -compile(export_all).
